@@ -1,4 +1,10 @@
-import { Text, View, TouchableOpacity, Pressable } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Pressable,
+  TextInput,
+} from "react-native";
 
 import { StatusBar } from "expo-status-bar";
 
@@ -7,47 +13,67 @@ import { useNavigation } from "@react-navigation/native";
 // Import Styles!
 import { stylesSign } from "../styles/StylesSign";
 
+import { StylesOnboarding } from "../styles/StylesOnboarding";
+
+// Import Component TextInput
+import InputComp from "../components/InputComp";
+
 export default function SignIn() {
   const navigation = useNavigation();
   return (
-    <View>
+    <View
+      style={{
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#f9ebe3",
+        padding: 40,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Text style={stylesSign.title}>FALTEI!</Text>
+
+      <View style={{ marginTop: 70, width: "100%" }}>
+        <TextInput
+          style={stylesSign.input}
+          placeholderTextColor={"#bebebe"}
+          placeholder="Digite seu email"
+        />
+
+        <TextInput
+          style={stylesSign.input}
+          placeholderTextColor={"#bebebe"}
+          placeholder="Digite sua senha"
+          secureTextEntry={true}
+        />
+      </View>
+
+      <TouchableOpacity style={stylesSign.bnt}>
+        <Text>Login</Text>
+      </TouchableOpacity>
+
       <View
         style={{
-          width: "100%",
-          height: "100%",
-          backgroundColor: "#00000088",
-          padding: 40,
           justifyContent: "center",
+          flexDirection: "row",
+          gap: 1,
+          marginTop: 5,
         }}
       >
-        <Text style={stylesSign.title}>Sign In</Text>
-        <Text style={stylesSign.text}>
-          Sign in now to acces your excercises and saved music
-        </Text>
-
-        <View style={{ marginTop: 80 }}>
-          0{/* COMPONENTES CRIADOS */}
-          <InputComp textPlaceholder={"Email Address"} password={false} />
-          <InputComp textPlaceholder={"Password"} password={true} />
-          <Pressable style={{ position: "absolute", right: 0, bottom: -20 }}>
-            <Text style={{ color: "#8b4513" }}>Forgot password?</Text>
-          </Pressable>
-        </View>
-
-        <TouchableOpacity
-          style={[StylesOnboarding.btn, { marginTop: 80, width: "100%" }]}
-        >
-          <Text style={StylesOnboarding.txt}>LOGIN</Text>
-        </TouchableOpacity>
-
-        <View style={StylesOnboarding.viewSignUp}>
-          <Text style={StylesOnboarding.txt}>Don't have an account? </Text>
-          <Pressable onPress={() => navigation.navigate("SignUp")}>
-            <Text style={{ fontWeight: "bold", color: "#8b4513" }}>
-              Sign Up
-            </Text>
-          </Pressable>
-        </View>
+        <Text style={{ color: "red" }}>Não tem uma conta? </Text>
+        <Pressable onPress={() => navigation.navigate("SignUp")}>
+          <Text style={{ fontWeight: "bold", color: "red" }}>Cadastre-se</Text>
+        </Pressable>
+        <Pressable style={{ position: "absolute", bottom: -20 }}>
+          <Text
+            style={{
+              fontWeight: "bold",
+              color: "red",
+            }}
+          >
+            Esqueci minha senha
+          </Text>
+        </Pressable>
       </View>
       <StatusBar hidden />
     </View>

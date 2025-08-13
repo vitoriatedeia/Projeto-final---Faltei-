@@ -11,7 +11,10 @@ import { StatusBar } from "expo-status-bar";
 // Import Styles!
 import { stylesSign } from "../styles/StylesSign";
 
+import { useNavigation } from "@react-navigation/native";
+
 export default function SignUp() {
+  const login = useNavigation();
   return (
     <View
       style={{
@@ -25,7 +28,7 @@ export default function SignUp() {
     >
       <Text style={stylesSign.title}>FALTEI!</Text>
 
-      <View style={{ marginTop: 70 }}>
+      <View style={{ marginTop: 70, width: "100%" }}>
         <TextInput
           style={stylesSign.input}
           placeholderTextColor={"#bebebe"}
@@ -68,7 +71,7 @@ export default function SignUp() {
         }}
       >
         <Text style={{ color: "red" }}>Já tem uma conta? </Text>
-        <Pressable>
+        <Pressable onPress={() => login.navigate("SignIn")}>
           <Text style={{ fontWeight: "bold", color: "red" }}>Faça login</Text>
         </Pressable>
       </View>
